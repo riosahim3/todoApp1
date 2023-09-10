@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <style>
+      /* CSS styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        text-align: center;
+      }
+      h2 {
+        text-align: center;
+      }
+
+
+      #todo-list {
+        margin: 20px auto;
+        width: 400px;
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      }
+
+      .todo-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      .todo-item input[type="checkbox"] {
+        margin-right: 10px;
+      }
+
+      .todo-item input[type="text"] {
+        flex: 1;
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+      }
+
+      .todo-item button {
+        border: none;
+        background-color: transparent;
+        color: #ff0000;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .todo-item button:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <h2>Your List</h2>
+    <div id="todo-list">
+      <!-- <div class="todo-item">
+        <input type="checkbox">
+        <input type="text" value="Buy milk">
+        <button>Delete</button>
+      </div> -->
+      <!-- <div class="todo-item">
+        <input type="checkbox">
+        <input type="text" value="Do laundry">
+        <button>Delete</button>
+      </div>
+      <div class="todo-item">
+        <input type="checkbox">
+        <input type="text" value="Go for a run">
+        <button>Delete</button>
+      </div> -->
+      <form id="add-todo-form">
+        <input type="text" id="new-todo" placeholder="Add new item" autocomplete="off">
+        <button type="submit">Add</button>
+      </form>
+    </div>
+    <a href="/login">Log In</a>
+
+    <script>
+      // JavaScript code
+      const todoList = document.querySelector('#todo-list');
+      const form = document.querySelector('#add-todo-form');
+      const input = document.querySelector('#new-todo');
+
+      function textStrike(){
+          
+      }
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (input.value) {
+          const newItem = document.createElement('div');
+          newItem.classList.add('todo-item');
+          newItem.innerHTML = `
+            <input type="checkbox" onclick="if(this.checked){textStrike()}">
+            <input type="text" value="${input.value}">
+            <button>Delete</button>
+          `;
+          const deleteButton = newItem.querySelector('button');
+          deleteButton.addEventListener('click', function() {
+            newItem.remove();
+          });
+          todoList.appendChild(newItem);
+          input.value = '';
+        }
+      });
+    </script>
+  </body>
+</html>
