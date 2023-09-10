@@ -5,7 +5,7 @@ const path = require("path");
 const hbs = require("hbs")
 const collection = require("./mongodb")
 
-
+console.log("thos page is running")
 
 const templatePath = path.join(__dirname,'../templates')
 
